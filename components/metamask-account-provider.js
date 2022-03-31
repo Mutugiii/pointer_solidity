@@ -45,7 +45,7 @@ export default function MetaMaskAccountProvider({children}) {
       return;
     }
 
-    const accounts = await ethereum.request({ method: 'eth_requestaccounts' });
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
     handleAccounts(accounts);
   };
   
@@ -59,5 +59,5 @@ export default function MetaMaskAccountProvider({children}) {
 }
 
 export function useMetaMaskAccount() {
-  return useContext(MetaMaskAccountContext)
+  return useContext(MetaMaskAccountContext);
 }

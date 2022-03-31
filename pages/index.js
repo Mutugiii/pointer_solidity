@@ -5,8 +5,9 @@ import Keyboard from "../components/keyboard";
 import TipButton from "../components/tip-button";
 
 import { ethers } from "ethers";
+import { useMetaMaskAccount } from "../components/metamask-account-provider";
 import { UserCircleIcon } from "@heroicons/react/solid"
-import addressesEqual from "../utils/addressesEqual";
+import addressesEqual from "../utils/adressesEqual";
 import getKeyboardsContract from "../utils/getKeyboardsContract";
 
 export default function Home() {

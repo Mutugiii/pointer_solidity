@@ -1,5 +1,6 @@
 import Router from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useMetaMaskAccount } from "../components/metamask-account-provider";
 import PrimaryButton from "../components/primary-button";
 import Keyboard from "../components/keyboard";
 import getKeyboardsContract from "../utils/getKeyboardsContract";
