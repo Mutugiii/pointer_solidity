@@ -19,6 +19,15 @@ contract Keyboards {
   }
   Keyboard[] public createdKeyboards;
 
+  event KeyboardCreated(
+    Keyboard keyboard
+  );
+
+  event TipSent(
+    address recipient,
+    uint256 amount
+  );
+
   function create(
     KeyboardKind _kind,
     bool _isPBT,
@@ -32,6 +41,7 @@ contract Keyboards {
     });
 
     createdKeyboards.push(newKeyboard);
+    emit KeyboardCreated(newKeyboard);
   }
   
   function getKeyboards() public view returns(Keyboard[] memory) {
@@ -42,5 +52,6 @@ contract Keyboards {
     address payable owner = payable(createdKeyboards[_index].owner);
 
     owner.transfer(msg.value);
+    emit TipSent(owner, msg.value);
   }
 }

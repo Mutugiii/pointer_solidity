@@ -13,7 +13,9 @@ async function main() {
   console.log("otherSigner balance before: ", hre.ethers.utils.formatEther(balanceBefore));
 
   const txn1 = await contract.create(0, true, "sepia");
-  await txn1.wait();
+  const txnReceipt = await txn1.wait();
+
+  console.log('\nCreate Event\n', txnReceipt.events, '\n');
 
   const txn2 = await contract.connect(otherSigner).create(1, false, "grayscale");
   await txn2.wait();
@@ -22,13 +24,15 @@ async function main() {
   // console.log("The single keyboard is", keyboard);
   
   keyboards = await contract.getKeyboards();
-  console.log('We got the keyboards again! ', keyboards);
+  console.log('We got the keyboards! ', keyboards);
 
   // keyboards = await contract.connect(otherSigner).getKeyboards();
   // console.log("The other signer got: ", keyboards);
   
   const tipTxn = await contract.tip(1, {value: hre.ethers.utils.parseEther("1000")});
-  await tipTxn.wait()
+  const tipTxnReceipt = await tipTxn.wait()
+
+  console.log('\nTip Events\n', tipTxnReceipt.events, '\n');
 
   const balanceAfter = await hre.ethers.provider.getBalance(otherSigner.address);
   console.log("otherSigner balance after: ", hre.ethers.utils.formatEther(balanceAfter));
